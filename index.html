@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ahmed Mansour – Computer Vision &amp; Perception Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&amp;family=Source+Serif+4:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F3F5F8;--panel:#FFFFFF;--ink:#101828;--muted:#475467;--line:#CBD3DE;--sq:#DCE2EB;--accent:#2848D0;--on-accent:#FFFFFF;
+--head:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;--body:"Source Serif 4",Georgia,"Times New Roman",serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0F1623;--panel:#161F30;--ink:#E8EDF5;--muted:#A3AFC2;--line:#2B3750;--sq:#1E2A40;--accent:#8FA3FF;--on-accent:#0F1623;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0F1623;--panel:#161F30;--ink:#E8EDF5;--muted:#A3AFC2;--line:#2B3750;--sq:#1E2A40;--accent:#8FA3FF;--on-accent:#0F1623;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.65 var(--body)}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,canvas:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:60rem;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{font-family:var(--head);line-height:1.1;margin:0}
+nav{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.25rem 0;font-family:var(--head);font-weight:500}
+nav div{display:flex;gap:1.25rem;flex-wrap:wrap}
+nav a{color:var(--ink);text-decoration:none}
+nav a:hover{color:var(--accent)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:2.5rem;align-items:center;padding:2.5rem 0 4rem}
+h1{font-size:clamp(2.4rem,5.4vw,3.9rem);font-weight:700;letter-spacing:-.02em}
+.lede{font-size:1.2rem;color:var(--muted);max-width:34rem;margin:1.25rem 0 1.5rem}
+.btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{font-family:var(--head);font-weight:500;padding:.7rem 1.1rem;border-radius:6px;border:1.5px solid var(--accent);text-decoration:none}
+.btn.main{background:var(--accent);color:var(--on-accent)}
+.board{margin:0}
+canvas{display:block;width:100%;aspect-ratio:10/7;background:var(--panel);border:1px solid var(--line);border-radius:6px;cursor:crosshair;touch-action:none}
+#readout{font-family:var(--head);font-size:.9rem;color:var(--muted);margin-top:.6rem;min-height:1.4em}
+section{padding:3rem 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(1.7rem,3.4vw,2.3rem);margin-bottom:.6rem}
+.intro{color:var(--muted);max-width:40rem;margin:0 0 2rem}
+.fit{display:grid;gap:0;border:1px solid var(--line);border-radius:6px;background:var(--panel);overflow:hidden}
+.row{display:grid;grid-template-columns:1fr 1.5fr auto;gap:1.25rem;padding:1rem 1.25rem;border-top:1px solid var(--line);align-items:baseline}
+.row:first-child{border-top:0}
+.row b{font-family:var(--head);font-weight:500}
+.row span.ev{color:var(--muted)}
+.tag{font-family:var(--head);font-size:.85rem;font-weight:500;padding:.15rem .6rem;border-radius:99px;border:1.5px solid var(--accent);color:var(--accent);white-space:nowrap}
+.tag.shown{background:var(--accent);color:var(--on-accent)}
+.tag.open{border-color:var(--line);color:var(--muted)}
+.proj{padding:1.6rem 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 2fr;gap:1.25rem 2.5rem}
+.proj:first-of-type{border-top:0;padding-top:0}
+.proj h3{font-size:1.35rem}
+.proj .meta{color:var(--muted);font-size:.95rem;margin-top:.35rem}
+.proj p{margin:0 0 .6rem;max-width:40rem}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.5rem 2.5rem;margin:0}
+.skills dt{font-family:var(--head);font-weight:700;margin-bottom:.25rem}
+.skills dd{margin:0;color:var(--muted)}
+footer{padding:3rem 0 4rem;border-top:1px solid var(--line)}
+footer p{max-width:36rem}
+@media (max-width:760px){.hero,.proj{grid-template-columns:1fr}.hero{gap:1.75rem}.row{grid-template-columns:1fr;gap:.35rem}.row .tag{justify-self:start}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><b>Ahmed Mansour</b><div><a href="#fit">Role fit</a><a href="#work">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div></nav>
+
+<header class="hero">
+<div>
+<h1>Vision systems that measure, tested on real hardware.</h1>
+<p class="lede">I’m a Communications and Electronics engineering graduate from Alexandria University, and I build camera calibration, stereo depth and sensor fusion pipelines for robots. This page maps my work to fab2’s computer vision role.</p>
+<div class="btns"><a class="btn main" href="#fit">See how I fit the role</a><a class="btn" href="https://github.com/AMansour5">GitHub</a></div>
+</div>
+<figure class="board">
+<canvas id="board" tabindex="0" role="img" aria-label="Interactive checkerboard. Move the pointer over it to see corner detection."></canvas>
+<figcaption id="readout">Move over the board to find a corner.</figcaption>
+</figure>
+</header>
+
+<section id="fit">
+<h2>How my work maps to the role</h2>
+<p class="intro">Each line below comes from the fab2 job description. “Shown” means there is a project below that proves it. “Not shown yet” marks what my portfolio doesn’t cover.</p>
+<div class="fit">
+<div class="row"><b>Camera calibration and geometric transforms</b><span class="ev">Stereo and monocular checkerboard calibrator, plus my own notes on the pinhole model, intrinsics, extrinsics and projection matrices.</span><span class="tag shown">Shown</span></div>
+<div class="row"><b>Measurements from images</b><span class="ev">Estimated a submerged pipe’s length with stereo vision to ±0.01 m on our ROV.</span><span class="tag shown">Shown</span></div>
+<div class="row"><b>Classical CV with Python, C++ and OpenCV</b><span class="ev">Stereo disparity tuning tool, lane detection pipeline, calibration tooling.</span><span class="tag shown">Shown</span></div>
+<div class="row"><b>Integration with cameras, motion and robotics</b><span class="ev">ROS2 rover, ROV servo and sensor control, wheelchair navigation with Nav2.</span><span class="tag shown">Shown</span></div>
+<div class="row"><b>Sensor fusion and precision alignment</b><span class="ev">EKF fusing IMU and wheel encoders, and a KF/EKF/UKF comparison written from scratch.</span><span class="tag shown">Shown</span></div>
+<div class="row"><b>From prototype to reliable software</b><span class="ev">Debugged and instrumented a ROS2 vision-to-navigation pipeline, covering failure handling.</span><span class="tag shown">Shown</span></div>
+<div class="row"><b>Frequency-domain analysis and optics (MTF, PSF)</b><span class="ev">No project in this portfolio covers these yet.</span><span class="tag open">Not shown yet</span></div>
+</div>
+</section>
+
+<section id="work">
+<h2>Projects</h2>
+<p class="intro">Most are built on my own hardware and machines, so the details come from what I actually ran.</p>
+
+<article class="proj"><div><h3>CameraCalibrator</h3><p class="meta">Stereo and monocular calibration</p></div>
+<div><p>A checkerboard calibrator for a side-by-side USB stereo camera that outputs a 3840×1080 combined frame. It splits the frame into left and right views and calibrates both, and the calibration ran to a successful result.</p><p><a href="https://github.com/AMansour5/CameraCalibrator">View the repository</a></p></div></article>
+
+<article class="proj"><div><h3>Live disparity tuner</h3><p class="meta">Stereo block matching (SGBM)</p></div>
+<div><p>A tool for tuning SGBM disparity settings on a live feed. It scales the resolution down so the tuning stays responsive on a 3840×1080 stream.</p></div></article>
+
+<article class="proj"><div><h3>Depth estimator</h3><p class="meta">In progress, YOLO plus stereo depth</p></div>
+<div><p>Detects objects on the rectified left frame only, then passes the boxes to a depth module that reports a distance per object. Rectification and disparity live in a helper class, and an orchestrator runs the whole pipeline.</p></div></article>
+
+<article class="proj"><div><h3>ROV stereo measurement</h3><p class="meta">Robo-Tech, underwater</p></div>
+<div><p>With a teammate, I estimated a submerged pipe’s length from stereo images to ±0.01 m. I also fixed random camera shutdowns by assigning stable camera names with udev rules, which made capture dependable.</p></div></article>
+
+<article class="proj"><div><h3>State estimation</h3><p class="meta">EKF, SLAM and Nav2</p></div>
+<div><p>On my autonomous wheelchair with a robotic arm, an EKF fuses IMU and wheel-encoder data for localization, with lifelong SLAM and the Nav2 planner on top. Separately, I wrote KF, EKF and UKF filters from scratch and compared them on a simulated differential-drive robot.</p></div></article>
+
+<article class="proj"><div><h3>ROS2 rover lane following</h3><p class="meta">Debugging a vision pipeline</p></div>
+<div><p>Traced a lane detection to Nav2 pipeline through QoS mismatches, corrupted polynomial fits, unstable navigation goals, watchdog stop frames and a broken topic chain. I added diagnostic instrumentation to the detection and goal nodes so each failure could be found from logs.</p></div></article>
+
+<article class="proj"><div><h3>Self-driving car in simulation</h3><p class="meta">CARLA, ROS2 Humble, ongoing</p></div>
+<div><p>A simulated car with four cameras, 3D lidar, encoders and an IMU, driven through the CARLA ROS bridge, with a web operator panel for manual and autonomous modes. It is simulation-only, but built behind hardware-abstraction layers.</p><p><a href="https://github.com/AMansour5/self_driving_car">View the repository</a></p></div></article>
+</section>
+
+<section id="experience">
+<h2>Experience</h2>
+<article class="proj"><div><h3>Robo-Tech</h3><p class="meta">Software Lead, then Robotics Software Engineer</p></div>
+<div><p>Led the ROS1 to ROS2 migration, introduced pretrained and custom deep learning models that raised CV task success rates, trained new members and delegated rover and ROV modules. Delivered a technical pitch that won Best Pitch at a competition.</p></div></article>
+<article class="proj"><div><h3>RoboKid</h3><p class="meta">Robotics Instructor</p></div>
+<div><p>Taught electronics and Arduino programming, and mentored a team in the Soccer category of RoboCup Junior 2024.</p></div></article>
+</section>
+
+<section id="skills">
+<h2>Skills</h2>
+<dl class="skills">
+<div><dt>Vision</dt><dd>OpenCV, camera calibration, stereo and SGBM disparity, YOLO, deep learning models</dd></div>
+<div><dt>Estimation and robotics</dt><dd>Extended Kalman filter, SLAM, Nav2, ROS and ROS2, PID control, Gazebo, CARLA</dd></div>
+<div><dt>Languages</dt><dd>Python, C++, C, Bash, MATLAB</dd></div>
+<div><dt>Embedded</dt><dd>I2C, SPI, UART, ESP-IDF, Arduino, OTA firmware updates</dd></div>
+<div><dt>Tools</dt><dd>Linux, Git, Docker, LaTeX</dd></div>
+</dl>
+</section>
+
+<footer id="contact">
+<h2>Contact</h2>
+<p>BSc in Communications and Electronic Engineering, Alexandria University, CGPA 3.07/4.0. Based in Alexandria, Egypt.</p>
+<p><a href="mailto:ahmedmonsour5@icloud.com">ahmedmonsour5@icloud.com</a><br><a href="https://github.com/AMansour5">github.com/AMansour5</a><br><a href="https://www.linkedin.com/in/ahmed-mansour5">linkedin.com/in/ahmed-mansour5</a></p>
+</footer>
+</div>
+
+<script>
+(function(){
+var c=document.getElementById('board'),x=c.getContext('2d'),out=document.getElementById('readout');
+var COLS=10,ROWS=7,W,H,s,ox,oy,px=null,py=null;
+function v(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
+function size(){var r=c.getBoundingClientRect(),d=window.devicePixelRatio||1;c.width=Math.round(r.width*d);c.height=Math.round(r.height*d);x.setTransform(d,0,0,d,0,0);W=r.width;H=r.height;s=Math.min(W/COLS,H/ROWS);ox=(W-s*COLS)/2;oy=(H-s*ROWS)/2;draw();}
+function nearest(){if(px===null)return null;var i=Math.round((px-ox)/s),j=Math.round((py-oy)/s);if(i<1||i>COLS-1||j<1||j>ROWS-1)return null;var cx=ox+i*s,cy=oy+j*s;if(Math.hypot(px-cx,py-cy)>s*0.7)return null;return{i:i,j:j,cx:cx,cy:cy};}
+function draw(){
+x.clearRect(0,0,W,H);
+x.fillStyle=v('--sq');
+for(var i=0;i<COLS;i++)for(var j=0;j<ROWS;j++)if((i+j)%2===0)x.fillRect(ox+i*s,oy+j*s,s,s);
+var a=v('--accent');x.fillStyle=a;
+for(var i=1;i<COLS;i++)for(var j=1;j<ROWS;j++){x.beginPath();x.arc(ox+i*s,oy+j*s,2,0,6.2832);x.fill();}
+var n=nearest();
+if(n){x.strokeStyle=a;x.lineWidth=2;x.beginPath();x.arc(n.cx,n.cy,s*0.28,0,6.2832);x.stroke();
+x.beginPath();x.moveTo(n.cx-s*0.4,n.cy);x.lineTo(n.cx+s*0.4,n.cy);x.moveTo(n.cx,n.cy-s*0.4);x.lineTo(n.cx,n.cy+s*0.4);x.stroke();
+out.textContent='Corner ('+n.i+', '+n.j+') found, offset '+(px-n.cx).toFixed(1)+', '+(py-n.cy).toFixed(1)+' px';}
+else out.textContent='Move over the board to find a corner.';}
+function move(e){var r=c.getBoundingClientRect();px=e.clientX-r.left;py=e.clientY-r.top;draw();}
+c.addEventListener('pointermove',move);c.addEventListener('pointerdown',move);
+c.addEventListener('pointerleave',function(){px=null;py=null;draw();});
+window.addEventListener('resize',size);
+if(window.matchMedia)window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);
+size();
+})();
+</script>
+</body>
+</html>
